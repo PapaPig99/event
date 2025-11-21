@@ -97,9 +97,9 @@ CREATE TABLE IF NOT EXISTS registrations (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- DATA
-INSERT INTO roles (code)
-VALUES ('ADMIN'), ('USER'), ('GUEST')
-ON DUPLICATE KEY UPDATE code = VALUES(code);
+INSERT INTO roles (id, code)
+VALUES (1, 'ADMIN'), (2, 'USER')
+ON DUPLICATE KEY UPDATE code=VALUES(code);
 
 INSERT INTO users (email, password, name, role_id)
 VALUES 
@@ -186,7 +186,7 @@ INSERT INTO events (
   start_date, end_date, status,
   sale_start_at, sale_end_at, sale_until_soldout,
   door_open_time,
-  poster_image_url
+  poster_image_url, seatmap_image_url
 ) VALUES (
   2,
   'ONE LUMPINEE HEROES 2025',
@@ -197,7 +197,7 @@ INSERT INTO events (
   'OPEN',
   '2025-08-15 10:00:00', NULL, TRUE,
   'ก่อนเริ่มงาน 1 ชม.',
-  '/images/poster_onelumpinee.jpg'
+  '/images/poster_onelumpinee.jpg', '/images/seatmap_lumpinee.jpg'
 );
 
 INSERT INTO event_sessions (id, event_id, name, start_time, use_zone_template)
@@ -260,7 +260,7 @@ INSERT INTO events (
   'โชว์มายากลระดับโลก ณ M Theatre กรุงเทพฯ',
   'show',
   'M Theatre กรุงเทพฯ',
-  '2025-09-20', '2025-09-21',
+  '2025-12-20', '2025-12-21',
   'OPEN',
   '2025-07-21 10:00:00', NULL, TRUE,
   'ก่อนเริ่มงาน 30 นาที',
@@ -269,8 +269,8 @@ INSERT INTO events (
 
 INSERT INTO event_sessions (id, event_id, name, start_time, use_zone_template)
 VALUES
-  (6, 4, 'เสาร์ 20 ก.ย.', '14:00:00', FALSE),
-  (7, 4, 'อาทิตย์ 21 ก.ย.', '14:00:00', FALSE);
+  (6, 4, 'เสาร์ 20 ธ.ค.', '14:00:00', FALSE),
+  (7, 4, 'อาทิตย์ 21 ธ.ค.', '14:00:00', FALSE);
 
 INSERT INTO event_zones (session_id, name, capacity, price)
 VALUES
@@ -294,7 +294,7 @@ INSERT INTO events (
   'งานแนะแนวศึกษาต่อต่างประเทศและทุนการศึกษาครั้งใหญ่ประจำปี',
   'education',
   'Royal Paragon Hall, Siam Paragon',
-  '2025-11-15', '2025-11-17',
+  '2025-12-15', '2025-12-17',
   'OPEN',
   '2025-09-10 09:00:00', NULL, TRUE,
   '09:00 น.',
@@ -303,15 +303,16 @@ INSERT INTO events (
 
 INSERT INTO event_sessions (id, event_id, name, start_time, use_zone_template)
 VALUES
-  (8, 5, 'วันศุกร์ 15 พ.ย.', '10:00:00', FALSE),
-  (9, 5, 'วันเสาร์ 16 พ.ย.', '10:00:00', FALSE),
-  (10, 5, 'วันอาทิตย์ 17 พ.ย.', '10:00:00', FALSE);
+  (8, 5, 'วันศุกร์ 15 ธ.ค.', '10:00:00', FALSE),
+  (9, 5, 'วันเสาร์ 16 ธ.ค.', '10:00:00', FALSE),
+  (10, 5, 'วันอาทิตย์ 17 ธ.ค.', '10:00:00', FALSE);
 
 INSERT INTO event_zones (session_id, name, capacity, price)
 VALUES
 (8, 'Exhibition Area', 1000, 0),
 (9, 'Exhibition Area', 1000, 0),
 (10, 'Exhibition Area', 1000, 0);
+
 
 -- EVENT 6: THAILAND TECH & BUSINESS SUMMIT 2025 (business)
 INSERT INTO events (
@@ -326,7 +327,7 @@ INSERT INTO events (
   'งานสัมมนาธุรกิจและเทคโนโลยีสำหรับผู้ประกอบการและสตาร์ทอัพ รวบรวม Keynote และ Workshop จากผู้นำในวงการ',
   'business',
   'Queen Sirikit National Convention Center (QSNCC), Bangkok',
-  '2025-10-25', '2025-10-26',
+  '2026-10-25', '2026-10-26',
   'OPEN',
   '2025-08-20 09:00:00', NULL, TRUE,
   '08:30 น.',
@@ -347,6 +348,9 @@ VALUES
   (12, 'VIP Business Lounge', 150, 4500),
   (12, 'Conference Standard', 500, 2500),
   (12, 'Startup Zone', 300, 1500);
+
+
+
 
 -- SHOW: Louis CK Extra Show in Bangkok 2026
 INSERT INTO events (
@@ -379,6 +383,8 @@ VALUES
   (203, 'Standard Zone', 250, 2200),
   (203, 'Balcony', 200, 1500);
 
+
+
 -- SPORT: ONE Friday Fights 133 at Lumpinee Stadium
 INSERT INTO events (
   id, title, description, category, location,
@@ -392,7 +398,7 @@ INSERT INTO events (
   'การต่อสู้ Muay Thai และ MMA รายการ ONE Friday Fights จาก ONE Championship ณ เวทีลุมพินี',
   'sport',
   'Lumpinee Boxing Stadium, Bangkok',
-  '2025-11-14', '2025-11-14',
+  '2025-12-14', '2025-12-14',
   'OPEN',
   '2025-09-30 10:00:00', NULL, TRUE,
   'ก่อนเริ่มศึก 1 ชม.',
